@@ -1,0 +1,48 @@
+/* ListTab.css */
+
+/* Container for the book list */
+.book-list {
+  display: flex;
+  flex-wrap: wrap; /* This allows books to wrap to the next row */
+  justify-content: space-around;
+  padding: 20px;
+  gap: 20px; /* Add space between book items */
+}
+
+/* Each book item (grid element) */
+.book-item {
+  width: 150px; /* Adjust to control the size of each book item */
+  text-align: center;
+}
+
+/* Image styling */
+.book-image {
+  width: 150px; /* Width matches the container */
+  height: 120px;
+  object-fit: cover; /* Ensures the image fits without distorting */
+  display: block;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Book details styling */
+.book-details {
+  margin-top: 10px;
+}
+
+.book-title {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 5px 0;
+}
+
+.book-author {
+  font-size: 14px;
+  color: #555;
+  margin: 0;
+}
+
+.book-year {
+  font-size: 12px;
+  color: #777;
+}

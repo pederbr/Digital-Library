@@ -1,0 +1,102 @@
+.javafx-base:
+    image: ahallemberg/itp:javafx-client-base
+
+.javafx-test-base: 
+    extends: .javafx-base
+    needs: 
+        - build-javafx-client
+    dependencies:
+        - build-javafx-client
+    retry: 
+        max: 2
+        when: 
+            - script_failure
+
+build-javafx-client:
+    extends: .javafx-base
+    stage: build
+    script:
+        - mvn clean install -f client/diglib-javafx/pom.xml -B -Dskip.unit.tests=true -DskipTests
+    artifacts:
+        paths:
+            - .m2/repository/com/itp/DigLib-ui-parent
+            - .m2/repository/com/itp/DigLib-fxui
+            - .m2/repository/com/itp/DigLib-model
+            - client/diglib-javafx/fxui/target/*.jar
+            - client/diglib-javafx/model/target/*.jar
+            - client/diglib-javafx/target/*.jar
+        expire_in: 1 day
+
+unit-test-javafx-client: 
+    extends: .javafx-test-base
+    stage: test
+    script: 
+        - mvn verify -f client/diglib-javafx/pom.xml -B
+
+    artifacts:
+        reports:
+            junit: client/diglib-javafx/**/target/surefire-reports/TEST-*.xml
+            coverage_report:
+                coverage_format: jacoco
+                path: client/diglib-javafx/aggregate/target/site/jacoco-aggregate/jacoco.xml
+        paths:
+            - client/diglib-javafx/aggregate/target/site/jacoco-aggregate/
+        expire_in: 30 days
+
+integration-test-javafx-client: 
+    extends: .javafx-test-base
+    stage: test
+    script: 
+        - mvn verify -f client/diglib-javafx/pom.xml -B -P integration-tests -Dskip.unit.tests=true -Dtestfx.launch.timeout=120000
+    artifacts:
+        reports:
+            junit: client/diglib-javafx/fxui/target/failsafe-reports/TEST-*.xml
+        expire_in: 30 days
+
+
+e2e-test-javafx-client: 
+    needs: 
+        - build-javafx-client
+        - deploy-backend 
+    extends: 
+        - .javafx-test-base
+        - .deployment-rules
+    stage: e2e-test
+    script: 
+        - curl -s https://api.diglib.no/books > /dev/null
+        - mvn verify -f client/diglib-javafx/pom.xml -B -P e2e-tests -Dskip.unit.tests=true -Dtestfx.launch.timeout=120000
+    artifacts:
+        reports:
+            junit: client/diglib-javafx/fxui/target/failsafe-reports/TEST-*.xml
+
+
+build-javafx-debian-application:
+    image: ahallemberg/itp:build-javafx-debian-application
+    extends: 
+        - .javafx-base
+        - .deployment-rules
+    needs: 
+        - build-javafx-client
+        - unit-test-javafx-client
+        - integration-test-javafx-client
+    dependencies:
+        - build-javafx-client
+    stage: deploy
+    script:
+        #jpackages application
+        - mvn install -f client/diglib-javafx/pom.xml -B -Dskip.unit.tests=true -DskipTests -P package
+        - mkdir -p builds
+        - cp client/diglib-javafx/fxui/target/dist/*.deb builds/
+        # Uploads build
+        - |
+            for file in builds/*; do
+                curl --header "JOB-TOKEN: $CI_JOB_TOKEN" \
+                    --upload-file "$file" \
+                    "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/diglib/${CI_COMMIT_REF_NAME}/$(basename $file)"
+            done
+    artifacts:
+        name: "diglib-${CI_COMMIT_REF_NAME}"
+        expose_as: 'Linux Packages'
+        paths:
+            - builds
+        expire_in: 30 days

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/17" 
+            xmlns:fx="http://javafx.com/fxml/1" 
+            prefHeight="480.0" prefWidth="720.0" 
+            fx:controller="fxui.controllers.ViewController">
+    <children>
+        <SplitPane dividerPositions="0.6962694877505566" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <items>
+                <AnchorPane minHeight="200.0" minWidth="200.0" prefWidth="520.0">
+                    <children>
+                        <TextArea fx:id="displayField" editable="false" text="No books selected&#10;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                    </children>
+                </AnchorPane>
+                <AnchorPane minHeight="200.0" minWidth="50.0" prefWidth="200.0">
+                    <children>
+                        <VBox alignment="TOP_CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <children>
+                                <TextArea fx:id="metadataField" editable="false" prefHeight="209.0" prefWidth="215.0" text="FEIL" />
+                                <Button fx:id="downloadBook" mnemonicParsing="false" onAction="#handleDownload" text="DOWNLOAD BOOK">
+                                    <VBox.margin>
+                                        <Insets top="10.0" />
+                                    </VBox.margin>
+                                </Button>
+                                <Button fx:id="deleteBook" mnemonicParsing="false" onAction="#handleDelete" text="DELETE BOOK" />
+                                <Text fx:id="errorText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0">
+                                    <VBox.margin>
+                                        <Insets top="10.0" />
+                                    </VBox.margin>
+                                </Text>
+                                <Text fx:id="confirmationText" fill="#00ff48" strokeType="OUTSIDE" strokeWidth="0.0" />
+                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                        <Button fx:id="prevPage" mnemonicParsing="false" onAction="#prevPage" text="Previous page" />
+                                        <Button fx:id="nextPage" mnemonicParsing="false" onAction="#nextPage" text="Next page" />
+                                    </children>
+                                </HBox>
+                            </children>
+                        </VBox>
+                    </children>
+                </AnchorPane>
+            </items>
+        </SplitPane>
+    </children>
+</AnchorPane>

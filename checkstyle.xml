@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<!DOCTYPE module PUBLIC
+          "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN"
+          "https://checkstyle.org/dtds/configuration_1_3.dtd">
+
+<module name="Checker">
+  <module name="TreeWalker">
+    <!-- Avoid using wildcard imports -->
+    <module name="AvoidStarImport"/>
+    
+    <!-- Enforce naming conventions for constants -->
+    <module name="ConstantName"/>
+    
+    <!-- Check for empty blocks of code -->
+    <module name="EmptyBlock"/>
+    
+    <!-- Check for empty statements -->
+    <module name="EmptyStatement"/>
+    
+    <!-- Ensure equals() and hashCode() methods are overridden together -->
+    <module name="EqualsHashCode"/>
+    
+    <!-- Prevent illegal imports -->
+    <module name="IllegalImport"/>
+    
+    <!-- Prevent illegal instantiation of classes -->
+    <module name="IllegalInstantiation"/>
+    
+    <!-- Prevent illegal throws of exceptions -->
+    <module name="IllegalThrows"/>
+    
+    <!-- Check for assignments within expressions -->
+    <module name="InnerAssignment"/>
+    
+    <!-- Check for Javadoc comments on types (classes, interfaces, etc.) -->
+    <module name="JavadocType"/>
+    
+    <!-- Check for Javadoc comments on methods -->
+    <module name="JavadocMethod"/>
+    
+    <!-- Check for Javadoc comments on variables -->
+    <!-- <module name="JavadocVariable"/> -->
+    
+    <!-- Enforce Javadoc style conventions -->
+    <module name="JavadocStyle"/>
+    
+    <!-- Ensure switch statements have a default case -->
+    <module name="MissingSwitchDefault"/>
+    
+    <!-- Enforce modifier order (public, protected, private, etc.) -->
+    <module name="ModifierOrder"/>
+    
+    <!-- Ensure braces are used for all control structures -->
+    <module name="NeedBraces"/>
+    
+    <!-- Check for whitespace after certain tokens -->
+    <module name="NoWhitespaceAfter"/>
+    
+    <!-- Check for whitespace before certain tokens -->
+    <module name="NoWhitespaceBefore"/>
+    
+    <!-- Limit the number of parameters in methods -->
+    <module name="ParameterNumber"/>
+    
+    <!-- Check for proper padding within parentheses -->
+    <module name="ParenPad"/>
+    
+    <!-- Check for proper padding within typecast parentheses -->
+    <module name="TypecastParenPad"/>
+    
+    <!-- Prevent redundant imports -->
+    <module name="RedundantImport"/>
+    
+    <!-- Simplify boolean expressions -->
+    <module name="SimplifyBooleanExpression"/>
+    
+    <!-- Simplify boolean return statements -->
+    <module name="SimplifyBooleanReturn"/>
+    
+    <!-- Check for string literal equality using '==' instead of equals() -->
+    <module name="StringLiteralEquality"/>
+    
+    <!-- Enforce naming conventions for types (classes, interfaces, etc.) -->
+    <module name="TypeName"/>
+    
+    <!-- Check for unused imports -->
+    <module name="UnusedImports"/>
+  </module>
+</module>
+

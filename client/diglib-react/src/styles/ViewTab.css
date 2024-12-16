@@ -1,0 +1,42 @@
+.view-tab {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+}
+
+.book-info {
+  flex: 1;
+}
+
+.book-content {
+  flex: 2;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  position: relative;
+  min-height: 300px;
+}
+
+.page-navigation {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  bottom: 20px; /* Adjust the distance from the bottom */
+  left: 20px;
+  right: 20px;
+}
+
+.previousPage-button,
+.nextPage-button {
+  padding: 0.5rem 1rem;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.previousPage-button:hover,
+.nextPage-button:hover {
+  background-color: #45a049;
+}

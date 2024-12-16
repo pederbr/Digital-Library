@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FindBugsFilter>
+    <Match>
+        <Package name="fxui.controllers" />
+        <Bug pattern="EI_EXPOSE_REP2" />
+    </Match>
+        <Match>
+        <Package name="com.itp.DigLib.api.service" />
+        <Bug pattern="EI_EXPOSE_REP2" />
+    </Match>
+</FindBugsFilter>

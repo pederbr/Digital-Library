@@ -1,0 +1,29 @@
+.deployment-rules: 
+    only: 
+        - master
+
+include:
+    - local: 'ci/javafx-client.yml'
+    - local: 'ci/react-client.yml'
+    - local: 'ci/backend.yml'
+
+stages:
+    - build 
+    - test
+    - deploy
+    - e2e-test
+
+image: maven:3.9-eclipse-temurin-17
+
+variables:
+    MAVEN_OPTS: "-Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository"
+    GIT_DEPTH: "0"
+    GIT_FETCH_EXTRA_FLAGS: --prune
+    GIT_STRATEGY: clone
+    GIT_CLEAN_FLAGS: -ffdx  
+
+cache:
+    key: "${CI_PIPELINE_ID}" 
+    paths:
+        - .m2/repository
+    policy: pull-push

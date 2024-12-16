@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" 
+            prefHeight="480.0" prefWidth="720.0" 
+            xmlns="http://javafx.com/javafx/17" 
+            xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="fxui.controllers.MainController">
+    <TabPane fx:id="tabPane">
+        <tabs>
+            <Tab fx:id="listTab" text="List" />
+            <Tab fx:id="viewTab" text="View" />
+            <Tab fx:id="uploadTab" text="Upload" />
+        </tabs>
+    </TabPane>
+</AnchorPane>

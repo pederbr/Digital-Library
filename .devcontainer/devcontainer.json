@@ -1,0 +1,20 @@
+{
+    "name": "DigLib Dev Container",
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "vscjava.vscode-java-pack",
+                "vscjava.vscode-maven",
+                "esbenp.prettier-vscode",
+                "dbaeumer.vscode-eslint"
+            ]
+        }
+    },
+    "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached",
+    "workspaceFolder": "/workspace",
+    "remoteUser": "vscode",
+    "postCreateCommand": "git config --global --add safe.directory /workspace && if [ -f .scripts/install-hooks.sh ]; then chmod +x .scripts/install-hooks.sh && ./.scripts/install-hooks.sh; fi"
+}

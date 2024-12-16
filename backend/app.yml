@@ -1,0 +1,5 @@
+runtime: java17
+instance_class: F2
+beta_settings:
+  cloud_sql_instances: "diglib-439508:europe-west3:diglib-db"
+entrypoint: java -Xmx512m -jar diglib-0.0.1-SNAPSHOT.jar
